@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="C:\Users\User\Downloads\icono.jpg" type="image/x-icon">
+    <title>CarsDash</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #001f3f;
+            color: #998f5a;
+        }
+        header {
+            background-color: #001a33;
+            color: #bfbebb;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+       
+        .menu {
+            background: #a7a494;
+            color: #001a33;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu select {
+            font-size: 16px;
+            padding: 5px;
+        }
+        .main-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            background: #001a33;
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
+        }
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .buy-button {
+            display: inline-block;
+            background: #b3ab7e;
+            color: #001a33;
+            padding: 10px 15px;
+            margin-top: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .about {
+            padding: 20px;
+            background: #001a33;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ℭ𝔞𝔯𝔇𝔞𝔰𝔥 🚗💨</h1>
+        <p></p>✨Aceleramos tu pasión por los autos✨</p>
+        <div class="menu">
+            <label for="category">¿Qué Buscas?</label>
+            <select id="category" onchange="loadContent()">
+                <option value="Inicio">Buscar</option>
+                <option value="familiares">Familiares</option>
+                <option value="deportivos">Deportivos</option>
+                <option value="camionetas">Camionetas</option>
+                <option value="electricos">Eléctricos</option>
+            </select>
+        </div>
+    </header>
+    <section id="content">
+        <div class="about" id="about">
+            <h2>𝐋𝐚 𝐡𝐢𝐬𝐭𝐨𝐫𝐢𝐚 𝐝𝐞 𝐂𝐚𝐫𝐃𝐚𝐬𝐡</h2>
+            
+            <p>Hace más de una década, un grupo de apasionados por la industria automotriz tuvo una visión: revolucionar la forma en que las personas eligen y adquieren vehículos. Así nació CarsDash, una plataforma creada para conectar a los amantes de los autos con las mejores marcas y modelos del mercado.
+
+                Desde sus inicios, CarsDash ha trabajado con las principales marcas del mundo, asegurando que cada cliente encuentre el automóvil perfecto para sus necesidades. Con un enfoque en la innovación y la tecnología, la empresa ha evolucionado constantemente, implementando herramientas digitales que permiten explorar y comprar vehículos de manera rápida y segura.
+                
+                Hoy en día, CarsDash no solo vende autos, sino que crea experiencias de conducción únicas. Con una selección exclusiva de vehículos familiares, deportivos, camionetas y eléctricos, la compañía ofrece la combinación perfecta entre rendimiento, seguridad y diseño vanguardista.
+                
+                Nuestra misión es simple: brindarte la mejor experiencia automotriz con un servicio personalizado y accesible. Ya sea que busques velocidad, comodidad o eficiencia ecológica, en CarsDash encontrarás el auto que se adapta a tu estilo de vida.
+                
+                ¡Acelera hacia el futuro con CarsDash! 
+            
+        </div>
+    </section>
+    <section id="products" class="products" style="display:none;"></section>
+    <script>
+        const productsData = {
+            familiares: [ 
+                { name: "Sedán Confort", price: "$20,000", img: "https://i.imgur.com/ORYuUMe.jpeg" },
+                { name: "SUV Familiar", price: "$30,000", img: "https://i.imgur.com/DOFyhg7.jpeg" },
+                { name: "Minivan Space", price: "$25,000", img: "https://i.imgur.com/qq2C2Qe.jpeg" },
+                { name: "Crossover Urban", price: "$28,000", img: "https://i.imgur.com/jaDFwug.jpeg" },
+                { name: "Sedán Lujo", price: "$35,000", img: "https://i.imgur.com/gCKXXYP.jpeg" }],
+            deportivos: [ 
+                { name: "Supercar 5000", price: "$90,000", img: "https://i.imgur.com/N8TbgWh.jpeg" },
+                { name: "Coupe Veloz", price: "$80,000", img: "https://i.imgur.com/0L0ob9F.jpeg" },
+                { name: "Convertible Turbo", price: "$85,000", img: "https://i.imgur.com/RVDJvcG.jpeg" },
+                { name: "Roadster 300", price: "$75,000", img: "https://i.imgur.com/qv0ONUP.jpeg" },
+                { name: "HyperSport X", price: "$120,000", img: "https://i.imgur.com/ZFIMtc2.jpeg" }],
+            camionetas: [
+                { name: "Pickup Power", price: "$40,000", img: "https://i.imgur.com/umJTVfp.jpeg" },
+                { name: "Offroad King", price: "$50,000", img: "https://i.imgur.com/jZg706h.jpeg" },
+                { name: "Camioneta Premium", price: "$60,000", img: "https://i.imgur.com/3COQRyh.jpeg" },
+                { name: "4x4 Monster", price: "$55,000", img: "https://i.imgur.com/tcI3eOw.jpeg" },
+                { name: "SUV Extrema", price: "$45,000", img: "https://i.imgur.com/SYpG1Jw.jpeg" }],
+            electricos: [
+                { name: "EcoSedán", price: "$45,000", img: "https://i.imgur.com/hIKAm2j.jpeg" },
+                { name: "ElectroSUV", price: "$50,000", img: "https://i.imgur.com/f9qCeU4.jpeg" },
+                { name: "Hatchback EV", price: "$35,000", img: "https://i.imgur.com/7ay4Fgi.jpeg" },
+                { name: "Tesla Killer", price: "$70,000", img: "https://i.imgur.com/7JxsJWr.jpeg" },
+                { name: "Crossover EV", price: "$55,000", img: "https://i.imgur.com/WxURLAf.jpeg" }]
+        };
+
+        function loadContent() {
+            const category = document.getElementById("category").value;
+            const productsContainer = document.getElementById("products");
+            const aboutSection = document.getElementById("about");
+            
+            if (category === "Inicio") {
+                aboutSection.style.display = "block";
+                productsContainer.style.display = "none";
+                productsContainer.innerHTML = "";
+            } else {
+                aboutSection.style.display = "none";
+                productsContainer.style.display = "flex";
+                productsContainer.innerHTML = "";
+                
+                productsData[category].forEach(product => {
+                    productsContainer.innerHTML += `
+                        <div class="product">
+                            <img src="${product.img}" alt="${product.name}">
+                            <h3>${product.name}</h3>
+                            <p>${product.price}</p>
+                            <a href="https://wa.me/?text=Quiero%20comprar%20${encodeURIComponent(product.name)}" class="buy-button">Comprar ahora</a>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        window.onload = loadContent;
+    </script>
+     
+
+
+</body>
+</html>
